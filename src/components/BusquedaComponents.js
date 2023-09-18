@@ -1,72 +1,89 @@
-import React, {useState, useEffect} from "react";
-import './Busqueda.css'
-const BusquedaComponents = () => {
-    //setear los hooks de useState
-    const [ users, setUsers ] = useState([]);
-    const [ search, setSearch ] = useState("");
+import React, { useState, useEffect } from "react";
+import './Busqueda.css';
 
-    //funcion para traer los datos de la API
-    const URL = 'https://jsonplaceholder.typicode.com/users';//Direcion con archivo json de datos
+const BusquedaComponents = () => {
+    const [users, setUsers] = useState([]);
+    const [search, setSearch] = useState("");
+    const [filteredUsers, setFilteredUsers] = useState([]);
+    const [selectedUsers, setSelectedUsers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const URL = 'https://jsonplaceholder.typicode.com/users';
 
     const showData = async () => {
-        const respuesta = await fetch(URL);
-        const data = await respuesta.json();
-        //console.log(data);
-        setUsers(data);
+        try {
+            const respuesta = await fetch(URL);
+            const data = await respuesta.json();
+            setUsers(data);
+            setIsLoading(false);
+        } catch (error) {
+            console.error("Error al obtener datos:", error);
+            setIsLoading(false);
+        }
     }
-    
-    //Funcion de Busqueda
+
     const searcher = (e) => {
-        setSearch(e.target.value);
-        //console.log(e.target.value)
-    }
+        const searchText = e.target.value.toLowerCase();
+        setSearch(searchText);
 
-    //Metodo de filtrado
-    //const results = !search ? users : users.filter((dato)=> dato.name.toLowerCase().includes(search.toLocaleLowerCase));
-    let results = []
-    if(!search)
-    {
-        results = users
-    }else{
-        results = users.filter( (dato) =>
-        dato.name.toLowerCase().includes(search.toLocaleLowerCase())
-        )
-    }
+        const filteredResults = users.filter((user) =>
+            user.name.toLowerCase().includes(searchText) && !selectedUsers.includes(user.id)
+        );
 
-    useEffect( () =>{
+        setFilteredUsers(filteredResults);
+    };
+
+    // Función para manejar la selección de una tarjeta
+    const toggleSelection = (userId) => {
+        if (selectedUsers.includes(userId)) {
+            setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+        } else {
+            setSelectedUsers([...selectedUsers, userId]);
+        }
+    };
+
+    useEffect(() => {
         showData();
     }, []);
-   
-    //Renderizo la vista de nuestro componente
+
     return (
         <div>
-            <input value={search} onChange={searcher} type="text" placeholder="Busqueda" className="form-control"></input>
+            <input value={search} onChange={searcher} type="text" placeholder="Búsqueda" className="form-control" />
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Usuario</th>
-                        <th>Correo</th>
-                        <th>Telefono</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        results.map( (user) =>(
-                            <tr key={user.id}>
-                                <td>{user.name}</td>
-                                <td>{user.username}</td>
-                                <td>{user.email}</td>
-                                <td>{user.phone}</td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+            {isLoading ? (
+                <p>Cargando datos...</p>
+            ) : (
+                <div className="user-cards">
+                    {filteredUsers.map((user) => (
+                        <div
+                            key={user.id}
+                            className={`user-card ${selectedUsers.includes(user.id) ? "selected" : ""}`}
+                            onClick={() => toggleSelection(user.id)}
+                        >
+                            <h3>{user.name}</h3>
+                            <p>Usuario: {user.username}</p>
+                            <p>Correo: {user.email}</p>
+                            <p>Teléfono: {user.phone}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
+            {/* Tarjetas seleccionadas debajo del input de búsqueda */}
+            <div className="selected-cards">
+                {selectedUsers.map((userId) => (
+                    <div
+                        key={userId}
+                        className="user-card selected"
+                    >
+                        {/* Mostrar los detalles de usuario seleccionado aquí */}
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
 
 export default BusquedaComponents;
+
+
 

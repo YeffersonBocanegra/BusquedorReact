@@ -14,30 +14,74 @@ div {
     border-radius: 5px;
     font-size: 16px;
 }
-/* Estilos para la tabla */
-table {
-    width: 100%;
-    border-collapse: collapse;
+.user-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.user-card {
+  width: calc(33.33% - 10px);
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
+
+  /* Estilos para tarjetas seleccionadas */
+  &.selected {
+    background-color: #007bff; /* Color de fondo cuando está seleccionada */
+    color: #fff; /* Color de texto cuando está seleccionada */
+    border: 1px solid #007bff; /* Borde cuando está seleccionada */
+  }
+}
+
+.user-card h3 {
+  font-size: 18px;
+  margin: 0;
+  padding-bottom: 5px;
+}
+
+.user-card p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.selected-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-/* Estilos para el encabezado de la tabla */
-th {
-    background-color: #007bff;
-    color: #fff;
-    font-weight: bold;
-    padding: 10px;
-    text-align: left;
+
+.selected-card {
+  width: calc(33.33% - 10px); /* Para mostrar tres tarjetas por fila y espacio entre ellas */
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #007bff; /* Borde de color azul */
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  color: #007bff; /* Color del texto */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
+
+  &:hover {
+    background-color: #007bff; /* Color de fondo al pasar el cursor */
+    color: #fff; /* Color de texto al pasar el cursor */
+  }
 }
-/* Estilos para las filas de la tabla */
-tr {
-    border-bottom: 1px solid #ddd;
+
+.selected-card h3 {
+  font-size: 18px;
+  margin: 0;
+  padding-bottom: 5px;
 }
-/* Estilos para las celdas de la tabla */
-td {
-    padding: 10px;
-}
-/* Estilos para las filas impares */
-tr:nth-child(odd) {
-    background-color: #f2f2f2;
+
+.selected-card p {
+  font-size: 14px;
+  margin: 0;
 }
