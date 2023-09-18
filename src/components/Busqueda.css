@@ -1,0 +1,43 @@
+
+/* Estilos para el contenedor principal */
+div {
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+/* Estilos para el input de búsqueda */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* Estilos para el encabezado de la tabla */
+th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+/* Estilos para las filas de la tabla */
+tr {
+    border-bottom: 1px solid #ddd;
+}
+/* Estilos para las celdas de la tabla */
+td {
+    padding: 10px;
+}
+/* Estilos para las filas impares */
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
