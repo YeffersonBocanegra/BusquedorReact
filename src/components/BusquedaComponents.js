@@ -27,7 +27,8 @@ const BusquedaComponents = () => {
         setSearch(searchText);
 
         const filteredResults = users.filter((user) =>
-            user.name.toLowerCase().includes(searchText) && !selectedUsers.includes(user.id)
+            (searchText === "" || user.name.toLowerCase().includes(searchText)) &&
+            !selectedUsers.includes(user.id)
         );
 
         setFilteredUsers(filteredResults);
@@ -70,20 +71,28 @@ const BusquedaComponents = () => {
             )}
             {/* Tarjetas seleccionadas debajo del input de búsqueda */}
             <div className="selected-cards">
-                {selectedUsers.map((userId) => (
-                    <div
-                        key={userId}
-                        className="user-card selected"
-                    >
-                        {/* Mostrar los detalles de usuario seleccionado aquí */}
-                    </div>
-                ))}
+                {selectedUsers.map((userId) => {
+                    // Encuentra el usuario seleccionado por su ID
+                    const selectedUser = users.find((user) => user.id === userId);
+                    return (
+                        <div
+                            key={userId}
+                            className="user-card selected"
+                        >
+                            <h3>{selectedUser.name}</h3>
+                            <p>Usuario: {selectedUser.username}</p>
+                            <p>Correo: {selectedUser.email}</p>
+                            <p>Teléfono: {selectedUser.phone}</p>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
 };
 
 export default BusquedaComponents;
+
 
 
 
