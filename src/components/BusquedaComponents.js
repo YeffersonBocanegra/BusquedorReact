@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from "react";
-import './Busqueda.css';
+import React, { useState, useEffect } from "react";//Define y Gestiona el estado en los componentes de React
+import './Busqueda.css';// Importo estilos CSS
+import usuarios from '../base.json'; // Importa el archivo JSON local
 
 const BusquedaComponents = () => {
-    const [users, setUsers] = useState([]);
-    const [search, setSearch] = useState("");
-    const [filteredUsers, setFilteredUsers] = useState([]);
-    const [selectedUsers, setSelectedUsers] = useState([]);
+    const [users, setUsers] = useState([]);//para almacenar datos de usuarios inicia vacia
+    const [search, setSearch] = useState("");//para almacenar el valor del cuadro de búsqueda
+    const [filteredUsers, setFilteredUsers] = useState([]);//para almacenar los usuarios que coinciden con la búsqueda
+    const [selectedUsers, setSelectedUsers] = useState([]);//para almacenar los usuarios seleccionados
     const [isLoading, setIsLoading] = useState(true);
 
-    const URL = 'https://jsonplaceholder.typicode.com/users';
-
     const showData = async () => {
-        try {
-            const respuesta = await fetch(URL);
-            const data = await respuesta.json();
-            setUsers(data);
+        try {            
+            setUsers(usuarios);
             setIsLoading(false);
         } catch (error) {
             console.error("Error al obtener datos:", error);
@@ -27,8 +24,7 @@ const BusquedaComponents = () => {
         setSearch(searchText);
 
         const filteredResults = users.filter((user) =>
-            (searchText === "" || user.name.toLowerCase().includes(searchText)) &&
-            !selectedUsers.includes(user.id)
+            searchText === "" || (user.name.toLowerCase().includes(searchText) && !selectedUsers.includes(user.id))
         );
 
         setFilteredUsers(filteredResults);
@@ -43,6 +39,11 @@ const BusquedaComponents = () => {
         }
     };
 
+    // Función para manejar la eliminación de un usuario seleccionado
+    const handleRemoveUser = (userId) => {
+        setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+    };
+
     useEffect(() => {
         showData();
     }, []);
@@ -51,8 +52,8 @@ const BusquedaComponents = () => {
         <div>
             <input value={search} onChange={searcher} type="text" placeholder="Búsqueda" className="form-control" />
 
-            {isLoading ? (
-                <p>Cargando datos...</p>
+            {(isLoading || search === "") ? (
+                isLoading ? <p>Cargando datos...</p> : <p>Ingresa un término de búsqueda</p>
             ) : (
                 <div className="user-cards">
                     {filteredUsers.map((user) => (
@@ -65,6 +66,9 @@ const BusquedaComponents = () => {
                             <p>Usuario: {user.username}</p>
                             <p>Correo: {user.email}</p>
                             <p>Teléfono: {user.phone}</p>
+                            {selectedUsers.includes(user.id) && (
+                                <button onClick={() => handleRemoveUser(user.id)}>Eliminar</button>
+                            )}
                         </div>
                     ))}
                 </div>
@@ -83,6 +87,7 @@ const BusquedaComponents = () => {
                             <p>Usuario: {selectedUser.username}</p>
                             <p>Correo: {selectedUser.email}</p>
                             <p>Teléfono: {selectedUser.phone}</p>
+                            <button  className="user-card" onClick={() => handleRemoveUser(userId)}>Eliminar</button>
                         </div>
                     );
                 })}
@@ -92,6 +97,8 @@ const BusquedaComponents = () => {
 };
 
 export default BusquedaComponents;
+
+
 
 
 

@@ -1,0 +1,83 @@
+[
+    {
+        "id": 1,
+        "name": "Yefferson",
+        "lastname": "Bocanegra Lara",
+        "username": "ybocanegra",
+        "email": "yboanegra@gmail.com",
+        "phone": "3112345678"
+    },
+    {
+        "id": 2,
+        "name": "Laady",
+        "lastname": "Catañeda Zukinn",
+        "username": "lcastañeda",
+        "email": "lcastañeda@gmail.com",
+        "phone": "3157892324"
+    },
+    {
+        "id": 3,
+        "name": "Dylan Santiago",
+        "lastname": "Bocanegra Castañeda",
+        "username": "dylans",
+        "email": "dylans@gmail.com",
+        "phone": "3002345627"
+    },
+    {
+        "id": 4,
+        "name": "Josepe",
+        "lastname": "Buitrago Castañeda",
+        "username": "josepeb",
+        "email": "josepeb@gmail.com",
+        "phone": "3227563432"
+    },
+    {
+        "id": 5,
+        "name": "Ruby del Carmen",
+        "lastname": "Lara Garzon",
+        "username": "rubylg",
+        "email": "rubylg@gmail.com",
+        "phone": "3237668902"
+    },
+    {
+        "id": 6,
+        "name": "Giancarlo",
+        "lastname": "Bocanegra Lara",
+        "username": "gianbl",
+        "email": "gianbl@gmail.com",
+        "phone": "3163427898"
+    },
+    {
+        "id": 7,
+        "name": "Lizanyuri",
+        "lastname": "Bocanegra Lara",
+        "username": "lizgat",
+        "email": "lizgat@gmail.com",
+        "phone": "3104562378"
+    },
+    {
+        "id": 8,
+        "name": "Mariana",
+        "lastname": "Bohorques",
+        "username": "mbohorques",
+        "email": "mbohorques@gmail.com",
+        "phone": "3172895612"
+    },
+    {
+        "id": 9,
+        "name": "Olga Lucia",
+        "lastname": "Lara Garzon",
+        "username": "olgag",
+        "email": "olgag@gmail.com",
+        "phone": "3190035624"
+    },
+    {
+        "id": 10,
+        "name": "Flor Alba",
+        "lastname": "Garzon",
+        "username": "florecitag",
+        "email": "florecitag@gmail.com",
+        "phone": "307835628"
+    }
+]
+

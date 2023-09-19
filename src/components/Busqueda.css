@@ -85,3 +85,46 @@ div {
   font-size: 14px;
   margin: 0;
 }
+
+/* Estilos para el botón Eliminar */
+/* Estilos para la tarjeta de usuario */
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea los elementos a la izquierda */
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el botón Eliminar */
+/* Estilos para la tarjeta de usuario */
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea los elementos a la izquierda */
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el botón Eliminar */
+.user-card button {
+  background-color: #ff0000; /* Color de fondo rojo */
+  color: #fff; /* Color del texto blanco */
+  border: none; /* Sin borde */
+  padding: 8px 12px; /* Espaciado interno */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  border-radius: 4px; /* Bordes redondeados */
+  margin-top: 8px; /* Espacio superior para separar el botón de los otros elementos */
+}
+
+.user-card button:hover {
+  background-color: #cc0000; /* Color de fondo más oscuro al pasar por encima */
+}
+
+
